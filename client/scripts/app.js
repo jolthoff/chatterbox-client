@@ -4,7 +4,7 @@
   window.username = "WhoAmI"
 
   window.fetch = function() {
-    $.ajax({
+     return $.ajax({
       url: 'https://api.parse.com/1/classes/chatterbox',
       type: 'GET',
       contentType: 'application/json',
@@ -16,11 +16,13 @@
           }
         });
 
-        $('.room-select').remove();
+        return messages;
+
+        /*$('.room-select').remove();
         
         _.each(rooms, function(room) {
           if (!room) return;
-          $('#chats').append($('<button class="room-select"></button>').text(room));
+          $('.dropdown').append($('<button class="room-select"></button>').text(room));
         });
 
         if (!activeRoom) {
@@ -39,6 +41,7 @@
           $node.append($('<span class="time"></span>').text(msg.createdAt));
           $('ul').append($node);
         });
+          */
       },
       error: function(data) {
         console.log(data);
@@ -65,11 +68,16 @@
   $(document).ready(function() {
 
     fetch();
+    $('.dropdown').on('click', function() {
+      $(this).find('.room-select').toggle();
+    })
 
-    $('body').on('click', '.room-select', function() {
+    $('.dropdown').on('click', '.room-select', function(event) {
       console.log('handler triggered');
-      activeRoom = $(this).text();
+      console.log(event);
+      activeRoom = $(event.target).text();
       fetch();
+
     });
 
     $('.post').on('click', function() {
@@ -90,3 +98,16 @@
 
 
 })
+
+  ///// BACKBONE
+  var pageView;
+  var chatCollection = new ChatCollection();
+
+
+  var request = fetch();
+  request.done(function(data) {
+    chatCollection.add(data.results);
+    pageView = new PageView();
+  });
+
+

@@ -86,3 +86,15 @@ form input[type=text] {
 .post {
     float: right;
 }
+
+.dropdown {
+    height: 20px;
+    background-color: yellow;
+    width: 40px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.room-select {
+    display: none;
+}
