@@ -12,6 +12,11 @@ var PageView = Backbone.View.extend({
     this.$el.find('.friend-window').append(this.friendView.$el)
     this.friendView.$el.hide();
 
+    if (username.length > 0) {
+      $('.controls').removeAttr('hidden');
+      $('.login').hide();
+    }
+
     this.listenTo(chatCollection, 'add', function() {
       this.roomView.render();
       this.chatView.render(chatCollection.filterByRoom(activeRoom));
@@ -46,6 +51,24 @@ var PageView = Backbone.View.extend({
       }
     },
 
+    "keypress .login": function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        localStorage.setItem('username', event.target.value)
+        username = localStorage.getItem('username');
+        $('.controls').show();
+        $('.login input').val('');
+        $('.login').hide();
+      }
+    },
+
+    "click .logout": function(event) {
+      username = '';
+      localStorage.removeItem('username');
+      $('.controls').hide();
+      $('.login').show();
+    },
+
     "click .username": function(event) {
       friends[$(event.target).text()] = friends[$(event.target).text()] + 1 || 1
       this.friendView.render()
@@ -77,8 +100,8 @@ var PageView = Backbone.View.extend({
       this.friendView.$el.slideToggle(200);
       this.friendView.expanded = !this.friendView.expanded;
       $('.expand-friend').text(this.friendView.expanded ? '–' : '+')
-
     }
+
   }
 
 })

@@ -1,8 +1,9 @@
-// YOUR CODE HERE:
   window.activeRoom = '';
   window.rooms = {};
   window.friends = {};
-  window.username = "WhoAmI"
+  window.username = localStorage.getItem('username') || '';
+  window.stored = false;
+  
 
   window.fetch = function() {
      return $.ajax({

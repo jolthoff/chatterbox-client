@@ -43,7 +43,7 @@ body {
     padding: 10px;
 }
 
-.controls {
+.controls, .login {
     width: 80%;
     margin: auto;
 }
