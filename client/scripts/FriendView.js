@@ -6,7 +6,11 @@ var FriendView = Backbone.View.extend({
   render: function() {
     this.$el.empty();
     _.each(friends, function(friendliness, friend) {
-      this.$el.append($('<li class="friend"></li>').text(friend))
+      var lineItem= $('<li class="friend"></li>');
+      lineItem.text(friend);
+      lineItem.append($('<span class="remove-friend">X</span>'));
+      
+      this.$el.append(lineItem);
     }.bind(this));
   }
 })

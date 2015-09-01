@@ -9,8 +9,13 @@ var ChatView = Backbone.View.extend({
       if (!maxMsg) {
         return;
       }
+      
       maxMsg--;
-      this.$el.prepend(new MessageView({model: message}).render().$el)
+      var post = new MessageView({model: message}).render().$el;
+      if (friends[message.get('username')]) {
+        post.addClass('friend-post');
+      }
+      this.$el.prepend(post);
     }.bind(this))
     return this;
   }

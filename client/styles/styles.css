@@ -1,5 +1,4 @@
 body {
-    background: #eee;
     text-align: center;
     padding: 0 25px;
     font-family: arial, sans-serif;
@@ -9,14 +8,15 @@ body {
     width: 500px;
     margin: auto;
     text-align: left;
-    background: white;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     display: inline-block;
+    border-radius: 10px;
 }
 
 #main h1 {
+    display: inline;
     margin-top: 0;
     font-size: 35px;
     margin-bottom: 5px;
@@ -27,51 +27,10 @@ body {
     font-style:italic;
 }
 
-#main ul {
-    padding-left: 20px;
-}
-
-#main .error {
-    border: 1px solid red;
-    background: #FDEFF0;
-    padding: 20px;
-}
-
-#main .success {
-    margin-top: 25px;
-}
-
-#main .success code {
-    font-size: 12px;
-    color: green;
-    line-height: 13px;
-}
-
-form {
-    padding: 20px;
-    padding-left: 0;
-    margin-bottom: 20px;
-}
-
-form input[type=text] {
-    margin-right: 10px;
-    width: 70%;
-    font-size: 12px;
-    padding: 5px;
-}
-
-.chat {
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: #eee;
-}
-
-.chat .username {
-    font-weight: 800;
-}
-
-.chat:hover {
-    background-color: #ddd;
+.current-room {
+    float: right;
+    display: inline;
+    font-size: 90%;
 }
 
 .spinner {
@@ -84,8 +43,36 @@ form input[type=text] {
     padding: 10px;
 }
 
-.post {
-    float: right;
+.controls {
+    width: 80%;
+    margin: auto;
+}
+
+
+.controls textarea {
+    border-radius: 5px;
+    text-align: center;
+    font-size: 140%;
+    margin: auto;
+    width: 100%;
+    display: block;
+    resize: none;
+}
+
+.controls textarea:focus {
+    outline: none;
+}
+
+.controls input, .controls button {
+    margin: 10px 0 0 0;
+    display: inline;
+    border-radius: 4px;
+    size: 120%;
+}
+
+.room-window, .friend-window {
+    cursor: pointer;
+    background-color: ;
 }
 
 .room-window {
@@ -102,4 +89,18 @@ form input[type=text] {
     float: right;
     width: 20%;
     display: inline-block;
+}
+
+.friend-window ul {
+    list-style: none;
+}
+
+.friend-post {
+    color: purple;
+    font-size: 120%;
+}
+
+.remove-friend {
+    margin-left: 5px;
+    color: red;
 }

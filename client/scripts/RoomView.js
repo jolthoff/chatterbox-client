@@ -1,6 +1,7 @@
 var RoomView = Backbone.View.extend({
   tagName: 'ul',
   className: 'room-list',
+  expanded: false,
 
   initialize: function() {
 
