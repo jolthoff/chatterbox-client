@@ -17,7 +17,7 @@ var PageView = Backbone.View.extend({
       $('.login').hide();
     }
 
-    this.listenTo(chatCollection, 'add', function() {
+    this.listenTo(chatCollection, 'sync', function() {
       this.roomView.render();
       this.chatView.render(chatCollection.filterByRoom(activeRoom));
     });
@@ -37,8 +37,8 @@ var PageView = Backbone.View.extend({
         roomname: newRoom === '' ? activeRoom : newRoom
       }
       console.log(data);
-      post(data);
-      fetch();
+      chatCollection.create(data);
+      chatCollection.loadMsgs()
   },
 
   events: {
@@ -89,7 +89,6 @@ var PageView = Backbone.View.extend({
     },
 
     "click .remove-friend": function(event) {
-      debugger
       var parent = event.target.parentNode
       delete friends[$(parent).text().slice(0, -1)];
       parent.remove();
