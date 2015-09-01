@@ -1,5 +1,5 @@
 var ChatView = Backbone.View.extend({
-  tagName: 'ol',
+  tagName: 'ul',
   className: 'chat',
 
   render: function(roomMessages) {

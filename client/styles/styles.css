@@ -4,6 +4,10 @@ body {
     font-family: arial, sans-serif;
 }
 
+ul {
+    list-style: none;
+}
+
 #main {
     width: 500px;
     margin: auto;
@@ -103,4 +107,24 @@ body {
 .remove-friend {
     margin-left: 5px;
     color: red;
+}
+
+.username {
+    font-style: bold;
+    font-size: 80%;
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid gray;
+}
+
+.message {
+    margin: auto;
+    font-size: 110%;
+}
+
+.time {
+    line-height: 1px;
+    opacity: .5;
+    font-size: 50%;
+    display: inline-block
 }
