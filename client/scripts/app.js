@@ -1,6 +1,7 @@
 // YOUR CODE HERE:
   window.activeRoom = '';
   window.rooms = {};
+  window.friends = {};
   window.username = "WhoAmI"
 
   window.fetch = function() {
@@ -15,34 +16,10 @@
             rooms[message.roomname] = message.roomname
           }
         });
+        chatCollection.add(messages);
 
-        return messages;
-
-        /*$('.room-select').remove();
-        
-        _.each(rooms, function(room) {
-          if (!room) return;
-          $('.dropdown').append($('<button class="room-select"></button>').text(room));
-        });
-
-        if (!activeRoom) {
-          return;
-        }
-
-        var displayedChat = messages.filter(function(msg) {
-            return msg.roomname === activeRoom;
-          });
-        $('ul').remove();
-        $('.chat-window').append($('<ul class="' + activeRoom + '"></ul>'));
-        displayedChat.forEach(function(msg) {
-          var $node = $('<li></li>');
-          $node.append($('<span class="username"></span>').text(msg.username));
-          $node.append($('<p class="message"></p>').text(msg.text));
-          $node.append($('<span class="time"></span>').text(msg.createdAt));
-          $('ul').append($node);
-        });
-          */
       },
+
       error: function(data) {
         console.log(data);
       }
@@ -80,20 +57,7 @@
 
     });
 
-    $('.post').on('click', function() {
-
-      var message = $('.write').val();
-      $('.write').val('');
-
-      var newRoom = $('.make-room').val();
     
-      var data = {
-        username: username,
-        text: message,
-        roomname: newRoom === '' ? activeRoom : newRoom
-      }
-      post(data);
-    });
 
 
 
@@ -106,7 +70,6 @@
 
   var request = fetch();
   request.done(function(data) {
-    chatCollection.add(data.results);
     pageView = new PageView();
   });
 

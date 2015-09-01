@@ -15,29 +15,30 @@
     <script src="scripts/ChatCollection.js"></script>
     <script src="scripts/MessageView.js"></script>
     <script src="scripts/RoomView.js"></script>
+    <script src="scripts/FriendView.js"></script>
     <script src="scripts/ChatView.js"></script>
     <script src="scripts/PageView.js"></script>
     <script src="scripts/app.js"></script>
   </head>
   <body>
-    <div class="dropdown">Rooms!</div>
     <div id="main">
     <!--<select>
 
     </select>-->
       <h1>chatterbox</h1>
+      
+      <textarea class="write" placeholder="Write on me"></textarea>
+      <input class="make-room" placeholder="Write room name">
+      <button class="post">Click me!</button>
       <!-- Your HTML goes here! -->
       <div class="chat-window">
         
       </div>
-      <textarea class="write" placeholder="Write on me"></textarea>
-      <input class="make-room" placeholder="Write room name">
-      <button class="post">Click me!</button>
     </div>
-    <div id="chats">
-      
+    <div class="friend-window">
     </div>
-
+    <div class="room-window">
+    </div>
     
   </body>
 </html>
