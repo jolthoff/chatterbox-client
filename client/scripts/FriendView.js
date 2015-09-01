@@ -1,5 +1,6 @@
 var FriendView = Backbone.View.extend({
   tagName: 'ul',
+  expanded: false,
 
   initialize: function() {},
 
@@ -9,7 +10,7 @@ var FriendView = Backbone.View.extend({
       var lineItem= $('<li class="friend"></li>');
       lineItem.text(friend);
       lineItem.append($('<span class="remove-friend">X</span>'));
-      
+
       this.$el.append(lineItem);
     }.bind(this));
   }

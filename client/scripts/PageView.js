@@ -10,6 +10,7 @@ var PageView = Backbone.View.extend({
     this.$el.find('.chat-window').append(this.chatView.$el)
     this.friendView = new FriendView();
     this.$el.find('.friend-window').append(this.friendView.$el)
+    this.friendView.$el.hide();
 
     this.listenTo(chatCollection, 'add', function() {
       this.roomView.render();
@@ -61,7 +62,7 @@ var PageView = Backbone.View.extend({
     "click .room-window h1": function(event) {
       this.roomView.$el.slideToggle(200);
       this.roomView.expanded = !this.roomView.expanded;
-      $('.expand').text(this.roomView.expanded ? '–' : '+');
+      $('.expand-room').text(this.roomView.expanded ? '–' : '+');
     },
 
     "click .remove-friend": function(event) {
@@ -70,6 +71,13 @@ var PageView = Backbone.View.extend({
       delete friends[$(parent).text().slice(0, -1)];
       parent.remove();
       this.chatView.render(chatCollection.filterByRoom(activeRoom))
+    },
+
+    "click .friend-window h1": function(event) {
+      this.friendView.$el.slideToggle(200);
+      this.friendView.expanded = !this.friendView.expanded;
+      $('.expand-friend').text(this.friendView.expanded ? '–' : '+')
+
     }
   }
 
