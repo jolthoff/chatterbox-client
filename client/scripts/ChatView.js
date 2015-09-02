@@ -2,7 +2,8 @@ var ChatView = Backbone.View.extend({
   tagName: 'ul',
   className: 'chat',
 
-  render: function(roomMessages) {
+  render: function() {
+    var roomMessages = chatCollection.filterByRoom(activeRoom);
     var maxMsg = 15;
     this.$el.empty()
     roomMessages.forEach(function(message) {

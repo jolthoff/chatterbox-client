@@ -33,6 +33,4 @@ var ChatCollection = Backbone.Collection.extend({
     });
   },
 
-
-
-})
+});

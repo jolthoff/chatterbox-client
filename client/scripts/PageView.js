@@ -19,7 +19,7 @@ var PageView = Backbone.View.extend({
 
     this.listenTo(chatCollection, 'sync', function() {
       this.roomView.render();
-      this.chatView.render(chatCollection.filterByRoom(activeRoom));
+      this.chatView.render();
     });
   },
 
@@ -30,15 +30,23 @@ var PageView = Backbone.View.extend({
         return;
       }
       var newRoom = $('.make-room').val();
+
+      if (newRoom !== activeRoom) {
+        activeRoom = newRoom;
+      }
     
       var data = {
         username: username,
         text: message,
-        roomname: newRoom === '' ? activeRoom : newRoom
+        roomname: activeRoom
       }
       console.log(data);
       chatCollection.create(data);
-      chatCollection.loadMsgs()
+      chatCollection.loadMsgs();
+      this.roomView.render();
+      this.chatView.render();
+      $('.make-room').val(activeRoom);
+      $('.current-room').text(activeRoom);
   },
 
   events: {
@@ -72,14 +80,13 @@ var PageView = Backbone.View.extend({
     "click .username": function(event) {
       friends[$(event.target).text()] = friends[$(event.target).text()] + 1 || 1
       this.friendView.render()
-      this.chatView.render(chatCollection.filterByRoom(activeRoom))
+      this.chatView.render()
     },
 
     "click .rooms": function(event) {
       activeRoom = $(event.target).text();
       $('.current-room').text(activeRoom);
-      var msgArray = chatCollection.filterByRoom($(event.target).text());
-      this.chatView.render(msgArray);
+      this.chatView.render();
     },
 
     "click .room-window h1": function(event) {
@@ -92,7 +99,7 @@ var PageView = Backbone.View.extend({
       var parent = event.target.parentNode
       delete friends[$(parent).text().slice(0, -1)];
       parent.remove();
-      this.chatView.render(chatCollection.filterByRoom(activeRoom))
+      this.chatView.render()
     },
 
     "click .friend-window h1": function(event) {
