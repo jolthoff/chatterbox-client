@@ -69,7 +69,7 @@ ul {
     outline: none;
 }
 
-.controls input, .controls button {
+.controls button {
     margin: 10px 0 0 0;
     display: inline;
     border-radius: 4px;

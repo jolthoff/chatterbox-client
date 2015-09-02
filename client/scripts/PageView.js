@@ -26,26 +26,19 @@ var PageView = Backbone.View.extend({
   postHandler: function() {
     var message = $('.write').val();
       $('.write').val('');
-      if (message.length === 0) {
-        return;
-      }
-      var newRoom = $('.make-room').val();
 
-      if (newRoom !== activeRoom) {
-        activeRoom = newRoom;
+      if (message.length !== 0) {
+        var data = {
+          username: username,
+          text: message,
+          roomname: activeRoom
+        }
+        console.log(data);
+        chatCollection.create(data);
       }
-    
-      var data = {
-        username: username,
-        text: message,
-        roomname: activeRoom
-      }
-      console.log(data);
-      chatCollection.create(data);
       chatCollection.loadMsgs();
       this.roomView.render();
       this.chatView.render();
-      $('.make-room').val(activeRoom);
       $('.current-room').text(activeRoom);
   },
 
@@ -106,6 +99,18 @@ var PageView = Backbone.View.extend({
       this.friendView.$el.slideToggle(200);
       this.friendView.expanded = !this.friendView.expanded;
       $('.expand-friend').text(this.friendView.expanded ? '–' : '+')
+    },
+
+    "click .make-room": function(event) {
+      if(!createdRoom) {
+        $('.choose-room').show();
+        createdRoom = true;
+      } else {
+        activeRoom = $('.choose-room').val()
+        this.postHandler();
+        createdRoom = false;
+        $('.choose-room').hide();
+      }
     }
 
   }
