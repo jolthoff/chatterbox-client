@@ -6,11 +6,15 @@ var PageView = Backbone.View.extend({
     this.roomView.render();
     this.roomView.$el.hide();
     this.$el.find('.room-window').append(this.roomView.$el);
+
     this.chatView = new ChatView();
     this.$el.find('.chat-window').append(this.chatView.$el)
+
     this.friendView = new FriendView();
     this.$el.find('.friend-window').append(this.friendView.$el)
     this.friendView.$el.hide();
+
+    this.dockView = new DockView();
 
     if (username.length > 0) {
       $('.controls').removeAttr('hidden');
@@ -110,6 +114,14 @@ var PageView = Backbone.View.extend({
         this.postHandler();
         createdRoom = false;
         $('.choose-room').hide();
+      }
+    },
+
+    "click .docker": function(event) {
+      var room = activeRoom;
+      if (docked.length < 3 && docked.indexOf(room) === -1) {
+        docked.push(room);
+        this.dockView.render();
       }
     }
 

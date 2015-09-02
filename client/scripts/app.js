@@ -3,6 +3,7 @@
   window.friends = {};
   window.username = localStorage.getItem('username') || '';
   window.createdRoom = false;
+  window.docked = [];
 
 ///// BACKBONE
   var pageView;
